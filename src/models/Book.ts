@@ -8,6 +8,7 @@ export class Book {
   ) {
     if (!isbn || isbn.trim() === "") throw new Error("ISBN should not be null or empty");
     if (!title || title.trim() === "") throw new Error("Title should not be null or empty");
+    if (!author || author.trim() === "") throw new Error("Author should not be null or empty");
   }
 
   getISBN(): string {
