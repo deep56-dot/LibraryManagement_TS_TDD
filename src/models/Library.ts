@@ -8,7 +8,8 @@ export class Library {
   private users: Map<string, User> = new Map();
 
   constructor(private name: string) {
+    if (!name || name.length < 5) throw new Error("Library name should be at least 5 characters long");
   }
 
-
+  
 }
