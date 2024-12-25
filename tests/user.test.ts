@@ -7,12 +7,12 @@ describe("User Class",()=>{
           });
           test("Should throw exception when Name is null or empty", () => {
             expect(() => new User("", User.Role.LIBRARIAN)).toThrow(
-              "ISBN should not be null or empty"
+              "Name should not be null or empty"
             );
           });
           test("Should throw exception when Role is invalid", () => {
-            expect(() => new User("", "My Role")).toThrow(
-              "ISBN should not be null or empty"
+            expect(() => new User("Deep", "My Role")).toThrow(
+              "Invalid user role"
             );
           });
 })
