@@ -12,4 +12,10 @@ describe("Book Class", () => {
             "ISBN should not be null or empty"
           );
       })
+
+      test("Should throw exception when title is null", () => {
+        expect(() => new Book("9780143414969", null!, "R.K. Narayan", 1958)).toThrow(
+          "Title should not be null or empty"
+        );
+      });
   });
