@@ -6,6 +6,6 @@ export class User {
       if (!Object.values(User.Role).includes(role)) throw new Error("Invalid user role");
     }
   
-    
+   
 }
   
