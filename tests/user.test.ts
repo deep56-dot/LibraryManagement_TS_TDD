@@ -10,4 +10,9 @@ describe("User Class",()=>{
               "ISBN should not be null or empty"
             );
           });
+          test("Should throw exception when Role is invalid", () => {
+            expect(() => new User("", "My Role")).toThrow(
+              "ISBN should not be null or empty"
+            );
+          });
 })
