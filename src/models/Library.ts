@@ -11,7 +11,10 @@ export class Library {
     if (!name || name.length < 5) throw new Error("Library name should be at least 5 characters long");
   }
 
-
+  addUser(user: User): void {
+    
+    this.users.set(user.getName(), user);
+  }
 
  
   

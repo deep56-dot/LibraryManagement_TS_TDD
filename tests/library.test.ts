@@ -13,6 +13,6 @@ describe("Library Class Tests", () => {
     test("Should add a user to the library", () => {
         const user = new User("Deep", User.Role.LIBRARIAN);
         library.addUser(user);
-        expect(library["users"].get("Deep")).toBe(user);
+        expect(library["users"].get("Deep")).toBe(user)
       });
 })
