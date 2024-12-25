@@ -18,4 +18,10 @@ describe("Book Class", () => {
           "Title should not be null or empty"
         );
       });
+
+      test("Should throw exception when author is empty", () => {
+        expect(() => new Book("9780143414969", "The Guide", "", 1958)).toThrow(
+          "Author should not be null or empty"
+        );
+      });
   });
