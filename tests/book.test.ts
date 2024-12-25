@@ -6,4 +6,10 @@ describe("Book Class", () => {
         expect(book).toBeDefined();
         expect(book.getISBN()).toBe("9780143414969");
       });
+
+      test("Should Throw Error when ISBN is null",()=>{
+        expect(() => new Book(null!, "The Guide", "R.K. Narayan", 1958)).toThrow(
+            "ISBN should not be null or empty"
+          );
+      })
   });
