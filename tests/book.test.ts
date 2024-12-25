@@ -24,4 +24,10 @@ describe("Book Class", () => {
           "Author should not be null or empty"
         );
       });
+
+      test("Should throw exception when publication year is null", () => {
+        expect(() => new Book("9780143414969", "The Guide", "R.K. Narayan", null!)).toThrow(
+          "Publication year should not be null"
+        );
+      });
   });
