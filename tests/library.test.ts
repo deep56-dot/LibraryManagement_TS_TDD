@@ -2,7 +2,7 @@ import { UserExistsException } from "../src/errors/userExitsException";
 import { Book } from "../src/models/Book";
 import {Library} from "../src/models/Library"
 import {User} from "../src/models/User"
-+
+import {PermissionDeniedException} from "../src/errors/permissionDeniedException"
 describe("Library Class Tests", () => {
     let library: Library;
     beforeEach(() => {
@@ -32,4 +32,12 @@ describe("Library Class Tests", () => {
     library.addBook(librarian, book);
     expect(library["books"].get("9780144000581")).toBe(book);
       })
+
+
+  test("Should not allow non-librarian users to add books", () => {
+    const user = new User("Heta", User.Role.USER);
+    const book = new Book("9780144000581", "Malgudi Days", "R.K. Narayan",1943);
+    library.addUser(user);
+    expect(() => library.addBook(user, book)).toThrow(PermissionDeniedException);
+  });
 })

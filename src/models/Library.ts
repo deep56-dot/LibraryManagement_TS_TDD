@@ -16,7 +16,7 @@ export class Library {
     this.users.set(user.getName(), user);
   }
   
-  addBook(user: User, book: Book): void {
+    addBook(user: User, book: Book): void {
 
     this.books.set(book.getISBN(), book);
   }
