@@ -4,6 +4,8 @@ import {Library} from "../src/models/Library"
 import {User} from "../src/models/User"
 import {PermissionDeniedException} from "../src/errors/permissionDeniedException"
 import {BookNotFoundException} from "../src/errors/bookNotFoundException"
+import {BookAlreadyBorrowedException} from "../src/errors/bookAlredayBorrowedException"
+
 
 describe("Library Class Tests", () => {
     let library: Library;

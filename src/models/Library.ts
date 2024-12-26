@@ -3,6 +3,7 @@ import { User } from "./User";
 import { UserExistsException } from "../errors/userExitsException";
 import { PermissionDeniedException } from "../errors/permissionDeniedException";
 import { BookNotFoundException } from "../errors/bookNotFoundException";
+import { BookAlreadyBorrowedException } from "../errors/bookAlredayBorrowedException";
 
 export class Library {
   private books: Map<string, Book> = new Map();
@@ -15,6 +16,7 @@ export class Library {
 
   addUser(user: User): void {
     if (this.users.has(user.getName())) throw new UserExistsException("User already exists in catalog");
+    
     this.users.set(user.getName(), user);
   }
   
@@ -26,6 +28,7 @@ export class Library {
 
   borrowBook(user: User, isbn: string): void {
     if (!this.books.has(isbn)) throw new BookNotFoundException("Book not found");
+    if (this.borrowedBooks.has(isbn)) throw new BookAlreadyBorrowedException("Book is already borrowed");
     this.borrowedBooks.set(isbn, user.getName());
     this.books.delete(isbn);
   }
