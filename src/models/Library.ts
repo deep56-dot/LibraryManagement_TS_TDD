@@ -1,6 +1,7 @@
 import { Book } from "./Book";
 import { User } from "./User";
 import { UserExistsException } from "../errors/userExitsException";
+import { PermissionDeniedException } from "../errors/permissionDeniedException";
 
 export class Library {
   private books: Map<string, Book> = new Map();
@@ -17,7 +18,8 @@ export class Library {
   }
   
     addBook(user: User, book: Book): void {
-
+    if (user.getRole() !== User.Role.LIBRARIAN)
+      throw new PermissionDeniedException("You are not authorized to add books");
     this.books.set(book.getISBN(), book);
   }
 }

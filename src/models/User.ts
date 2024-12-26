@@ -9,6 +9,9 @@ export class User {
     getName(): string {
         return this.name;
       }
-      
+
+      getRole():string{
+        return this.role
+      }
 }
   
