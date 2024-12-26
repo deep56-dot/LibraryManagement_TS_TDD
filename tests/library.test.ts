@@ -1,5 +1,6 @@
 import {Library} from "../src/models/Library"
 import {User} from "../src/models/User"
+
 describe("Library Class Tests", () => {
     let library: Library;
     beforeEach(() => {
@@ -14,5 +15,11 @@ describe("Library Class Tests", () => {
         const user = new User("Deep", User.Role.LIBRARIAN);
         library.addUser(user);
         expect(library["users"].get("Deep")).toBe(user)
+      });
+
+      test("Should not allow duplicate users", () => {
+        const user = new User("Parth", User.Role.LIBRARIAN);
+        library.addUser(user);
+        expect(() => library.addUser(user)).toThrow(UserExistsException);
       });
 })
