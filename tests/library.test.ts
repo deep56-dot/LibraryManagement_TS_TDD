@@ -1,3 +1,4 @@
+import { UserExistsException } from "../src/errors/userExitsException";
 import {Library} from "../src/models/Library"
 import {User} from "../src/models/User"
 

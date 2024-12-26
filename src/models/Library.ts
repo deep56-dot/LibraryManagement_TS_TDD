@@ -1,6 +1,6 @@
 import { Book } from "./Book";
 import { User } from "./User";
-
+import { UserExistsException } from "../errors/userExitsException";
 
 export class Library {
   private books: Map<string, Book> = new Map();
@@ -12,7 +12,7 @@ export class Library {
   }
 
   addUser(user: User): void {
-    
+    if (this.users.has(user.getName())) throw new UserExistsException("User already exists in catalog");
     this.users.set(user.getName(), user);
   }
 
