@@ -22,4 +22,10 @@ export class Library {
       throw new PermissionDeniedException("You are not authorized to add books");
     this.books.set(book.getISBN(), book);
   }
+
+  borrowBook(user: User, isbn: string): void {
+  
+    this.borrowedBooks.set(isbn, user.getName());
+    this.books.delete(isbn);
+  }
 }
