@@ -83,7 +83,7 @@ describe("Library Class Tests", () => {
   test("Should allow user to return a borrowed book", () => {
     const librarian = new User("Deep", User.Role.LIBRARIAN);
     const user = new User("Heta", User.Role.USER);
-    const book = new Book("9788172234980", "The White Tiger", "Aravind Adiga", Year.of(2008));
+    const book = new Book("9788172234980", "The White Tiger", "Aravind Adiga", 2008);
 
     library.addUser(librarian);
     library.addUser(user);

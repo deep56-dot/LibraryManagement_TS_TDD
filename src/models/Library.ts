@@ -32,4 +32,13 @@ export class Library {
     this.borrowedBooks.set(isbn, user.getName());
     this.books.delete(isbn);
   }
+
+    returnBook(user: User, isbn: string): void {
+    const borrower = this.borrowedBooks.get(isbn);
+    if (!borrower) throw new BookNotFoundException("Book was not borrowed by any user");
+    if (borrower !== user.getName()) throw new Error("Book was not borrowed by this user");
+    const book = this.books.get(isbn);
+    this.borrowedBooks.delete(isbn);
+    this.books.set(isbn, book!);
+  }
 }
