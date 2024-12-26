@@ -2,6 +2,7 @@ import { Book } from "./Book";
 import { User } from "./User";
 import { UserExistsException } from "../errors/userExitsException";
 import { PermissionDeniedException } from "../errors/permissionDeniedException";
+import { BookNotFoundException } from "../errors/bookNotFoundException";
 
 export class Library {
   private books: Map<string, Book> = new Map();
@@ -24,7 +25,7 @@ export class Library {
   }
 
   borrowBook(user: User, isbn: string): void {
-  
+    if (!this.books.has(isbn)) throw new BookNotFoundException("Book not found");
     this.borrowedBooks.set(isbn, user.getName());
     this.books.delete(isbn);
   }

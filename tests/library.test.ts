@@ -3,6 +3,8 @@ import { Book } from "../src/models/Book";
 import {Library} from "../src/models/Library"
 import {User} from "../src/models/User"
 import {PermissionDeniedException} from "../src/errors/permissionDeniedException"
+import {BookNotFoundException} from "../src/errors/bookNotFoundException"
+
 describe("Library Class Tests", () => {
     let library: Library;
     beforeEach(() => {
