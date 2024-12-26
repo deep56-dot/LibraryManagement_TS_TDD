@@ -44,7 +44,7 @@ describe("Library Class Tests", () => {
   test("Should allow user to borrow an available book", () => {
     const librarian = new User("Deep", User.Role.LIBRARIAN);
     const user = new User("Heta", User.Role.USER);
-    const book = new Book("9788172234980", "The White Tiger", "Aravind Adiga", Year.of(2008));
+    const book = new Book("9788172234980", "The White Tiger", "Aravind Adiga", 2008);
 
     library.addUser(librarian);
     library.addUser(user);
@@ -54,4 +54,13 @@ describe("Library Class Tests", () => {
     expect(library["books"].get("9788172234980")).toBeUndefined();
     expect(library["borrowedBooks"].get("9788172234980")).toBe("Heta");
   });
+
+  test("Should throw exception when borrowing a non-existent book", () => {
+    const user = new User("Parth", User.Role.USER);
+    library.addUser(user);
+    expect(() => library.borrowBook(user, "9788172234980")).toThrow(BookNotFoundException);
+  });
+
+  
+
 })
