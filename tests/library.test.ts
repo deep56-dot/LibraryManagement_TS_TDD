@@ -80,6 +80,22 @@ describe("Library Class Tests", () => {
     expect(() => library.borrowBook(user2, "9788172234980")).toThrow(BookAlreadyBorrowedException);
   });
 
+  test("Should allow user to return a borrowed book", () => {
+    const librarian = new User("Deep", User.Role.LIBRARIAN);
+    const user = new User("Heta", User.Role.USER);
+    const book = new Book("9788172234980", "The White Tiger", "Aravind Adiga", Year.of(2008));
+
+    library.addUser(librarian);
+    library.addUser(user);
+    library.addBook(librarian, book);
+
+    library.borrowBook(user, "9788172234980");
+    library.returnBook(user, "9788172234980");
+
+    expect(library["books"].get("9788172234980")).toBe(book);
+    expect(library["borrowedBooks"].get("9788172234980")).toBeUndefined();
+  });
+
 
 
   
