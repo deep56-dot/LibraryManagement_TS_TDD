@@ -8,6 +8,8 @@ import { BookAlreadyBorrowedException } from "../errors/bookAlredayBorrowedExcep
 export class Library {
   private books: Map<string, Book> = new Map();
   private borrowedBooks: Map<string, string> = new Map();
+  private borrowedBooksObj: Map<string, Book> = new Map();
+
   private users: Map<string, User> = new Map();
 
   constructor(private name: string) {
@@ -27,19 +29,35 @@ export class Library {
   }
 
   borrowBook(user: User, isbn: string): void {
-    if (!this.books.has(isbn)) throw new BookNotFoundException("Book not found");
     if (this.borrowedBooks.has(isbn)) throw new BookAlreadyBorrowedException("Book is already borrowed");
+    if (!this.books.has(isbn)) throw new BookNotFoundException("Book not found");
     this.borrowedBooks.set(isbn, user.getName());
+    this.borrowedBooksObj.set(isbn,this.books.get(isbn)!)
     this.books.delete(isbn);
+
+    this.borrowedBooks.forEach((value,key)=>{
+      console.log(value);
+    })
   }
 
     returnBook(user: User, isbn: string): void {
     const borrower = this.borrowedBooks.get(isbn);
     if (!borrower) throw new BookNotFoundException("Book was not borrowed by any user");
     if (borrower !== user.getName()) throw new Error("Book was not borrowed by this user");
-    
-    const book = this.books.get(isbn);
+
+    const book = this.borrowedBooksObj.get(isbn);
+
+    this.borrowedBooksObj.delete(isbn);
     this.borrowedBooks.delete(isbn);
     this.books.set(isbn, book!);
+
+    
+    this.books.forEach((value,key)=>{
+      console.log(value);
+    })
+  }
+
+  viewAvailableBooks(): Map<string, Book> {
+    return new Map(this.books); // Return a copy to ensure immutability
   }
 }

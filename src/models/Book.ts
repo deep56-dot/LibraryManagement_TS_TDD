@@ -15,4 +15,8 @@ export class Book {
   getISBN(): string {
     return this.isbn;
   }
+
+  getTitle():string{
+    return this.title
+  }
 }

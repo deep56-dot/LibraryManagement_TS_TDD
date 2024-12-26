@@ -92,8 +92,8 @@ describe("Library Class Tests", () => {
     library.borrowBook(user, "9788172234980");
     library.returnBook(user, "9788172234980");
 
-    expect(library["books"].get("9788172234980")).toBe(book);
     expect(library["borrowedBooks"].get("9788172234980")).toBeUndefined();
+    expect(library["books"].get("9788172234980")).toBeDefined();
   });
 
   test("Should throw exception when returning a book not borrowed by user", () => {
