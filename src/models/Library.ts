@@ -15,7 +15,9 @@ export class Library {
     if (this.users.has(user.getName())) throw new UserExistsException("User already exists in catalog");
     this.users.set(user.getName(), user);
   }
-
- 
   
+  addBook(user: User, book: Book): void {
+
+    this.books.set(book.getISBN(), book);
+  }
 }
