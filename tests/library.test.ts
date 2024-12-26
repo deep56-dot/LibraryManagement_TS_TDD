@@ -63,6 +63,23 @@ describe("Library Class Tests", () => {
     expect(() => library.borrowBook(user, "9788172234980")).toThrow(BookNotFoundException);
   });
 
+  test("Should throw exception when borrowing an already borrowed book", () => {
+    const librarian = new User("Deep", User.Role.LIBRARIAN);
+    const user1 = new User("Heta", User.Role.USER);
+    const user2 = new User("Parth", User.Role.USER);
+    const book = new Book("9788172234980", "The White Tiger", "Aravind Adiga", 2008);
+
+    library.addUser(librarian);
+    library.addUser(user1);
+    library.addUser(user2);
+    library.addBook(librarian, book);
+
+    library.borrowBook(user1, "9788172234980");
+    expect(() => library.borrowBook(user2, "9788172234980")).toThrow(BookAlreadyBorrowedException);
+  });
+
+
+
   
 
 })
